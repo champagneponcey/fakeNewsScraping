@@ -1,5 +1,6 @@
 const express = require("express");
 const handlebars = require("express-handlebars");
+const logger = require("morgan");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cheerio = require("cheerio");
@@ -8,6 +9,13 @@ const request = require("request");
 mongoose.Promise = Promise;
 
 var app = express();
+
+var databaseUrl = "beauty";
+var collections = ["tutorials"];
+
+db.on("error", function(error) {
+    console.log("Database Error: ", error);
+});
 
 console.log("\n**********************************\n" +
     "Grabbing every article name and link\n" +
