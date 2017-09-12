@@ -12,21 +12,22 @@ console.log("\n**********************************\n" +
     "from Byrdie's main page: " +
     "\n**********************************\n");
 
-request("http://www.byrdie.com/", function(error, response, html) {
+request("http://www.byrdie.com/section/skin", function(error, response, html) {
     var $ = cheerio.load(html);
 
     var results = [];
 
-    $("a.jw-card-title").each(function(i, element) {
+    $("div.promo-feed-img").each(function(i, element) {
 
-        var title = $(element).text();
-        var link = $(element).attr("href");
+        var title = $(element).children().text();
+        var link = $(element).children().attr("href");
+        var imgLink = $(element).children().find("img").attr("src");
         // var image = $(element).children().image();
 
         results.push({
             Title: title,
-            Link: link
-                // image: image
+            Link: link,
+            ImgLink: imgLink
         });
     });
 
