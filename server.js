@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const cheerio = require("cheerio");
 const request = require("request");
 
+mongoose.Promise = Promise;
+
 var app = express();
 
 console.log("\n**********************************\n" +
