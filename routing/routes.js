@@ -52,6 +52,29 @@ app.get("/articles", function(req, res) {
     });
 });
 
-app.post("/submit", function(req, res) {
-    var user = new Example(req.body);
-})
+// create/replace notes for articles
+app.post("/articles/:id", function(req, res) {
+    // create new note and pass the req.body to entry
+    var newNote = new Note(req.body);
+
+    // save new note to db
+    newNote.save(function(error, doc) {
+        // log any errors
+        if (error) {
+            console.log(error);
+        } else {
+            // use article id to find and update note
+            Article.findOneAndUpdate({ "_id": req.params.id }, { "note": doc._id })
+                // execute query
+                .exec(function(err, doc) {
+                    // log any errors
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        // or send document to browser
+                        res.send(doc);
+                    }
+                });
+        }
+    });
+});
