@@ -4,6 +4,12 @@ const handlebars = require("express-handlebars");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+
+// require note and article model
+const Note = require("./model/Note.js");
+const Article = require("./model/Article.js");
+
+// requiring our scraping tools
 const cheerio = require("cheerio");
 const request = require("request");
 
