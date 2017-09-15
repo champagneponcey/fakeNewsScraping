@@ -16,21 +16,41 @@ app.get("/scrape", function(req, res) {
             // save empty result object
             var results = {};
 
-            var title = $(element).children().text();
-            var link = $(element).children().attr("href");
-            var imgLink = $(element).children().find("img").attr("src");
-            // var image = $(element).children().image();
+            // add text and href of everylink and save them to result object
+            results.title = $(this).children("a").text();
+            results.link = $(this).children("a").attr("href");
+            results.imgLink = $(this).children("a").find("img").attr("scr");
 
-            results.push({
-                Title: title,
-                Link: link,
-                ImgLink: imgLink
+            // using article model, create a new entry
+            var entry = new Article(results);
+
+            // save new entry to db
+            entry.save(function(err, doc) {
+                // log error if any
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(doc);
+                }
             });
         });
+    });
+    // tell browser scraping finished
+    res.send("Scrape Complete");
+});
 
-        console.log(results);
-    })
-})
+// will get scraped articles from DB
+app.get("/articles", function(req, res) {
+    // grab every article from db
+    Article.find({}, function(error, doc) {
+        // log any errors
+        if (error) {
+            console.log(error);
+        } else {
+            res.json(doc);
+        }
+    });
+});
 
 app.post("/submit", function(req, res) {
     var user = new Example(req.body);
