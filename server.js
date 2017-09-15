@@ -48,3 +48,7 @@ console.log("\n**********************************\n" +
     "Grabbing every article name and link\n" +
     "from Byrdie's main page: " +
     "\n**********************************\n");
+
+app.listen(3000, function() {
+    console.log("App running on port 3000");
+});
