@@ -1,6 +1,7 @@
-.container {
-    background-image: url("https://imgur.com/JcQnK8w");
-    padding: 150px;
+.container-fluid {
+    background-image: url("https://i.imgur.com/JcQnK8w.jpg?2");
+    height: 414px;
+    /* background: fuchsia; */
 }
 
 h1 {
