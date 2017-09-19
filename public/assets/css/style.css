@@ -1,0 +1,15 @@
+.container {
+    background-image: url("https://imgur.com/JcQnK8w");
+    padding: 150px;
+}
+
+h1 {
+    font-size: 50px;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+}
