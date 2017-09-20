@@ -61,10 +61,13 @@ app.listen(PORT, function() {
 // initialize express
 var app = express();
 
+// define index path
 app.get("/", function(req, res) {
-        res.sendFile("index");
-    })
-    // a GET request to scrape website
+    res.sendFile("index");
+});
+
+
+// a GET request to scrape website
 app.get("/scrape", function(req, res) {
     // grab body of html with request
     request("http://www.byrdie.com/section/skin", function(error, response, html) {
@@ -77,7 +80,7 @@ app.get("/scrape", function(req, res) {
             var results = {};
 
             // add text and href of everylink and save them to result object
-            results.title = $(this).children("a").text();
+            results.title = $(this).children("a").find("img").attr("alt");
             results.link = $(this).children("a").attr("href");
             results.imgLink = $(this).children("a").find("img").attr("scr");
 
@@ -100,7 +103,7 @@ app.get("/scrape", function(req, res) {
 });
 
 // will get scraped articles from DB
-app.get("/articles", function(req, res) {
+app.get("/articles/", function(req, res) {
     // grab every article from db
     Article.find({}, function(error, doc) {
         // log any errors
