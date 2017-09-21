@@ -103,16 +103,17 @@ app.get("/scrape", function(req, res) {
 });
 
 // will get scraped articles from DB
-app.get("/articles/", function(req, res) {
-    // grab every article from db
-    Article.find({}, function(error, doc) {
-        // log any errors
-        if (error) {
-            console.log(error);
-        } else {
-            res.json(doc);
-        }
-    });
+app.get("/articles", function(req, res) {
+    res.json('hi')
+        // grab every article from db
+        // Article.find({}, function(error, doc) {
+        //     // log any errors
+        //     if (error) {
+        //         console.log(error);
+        //     } else {
+        //         res.json(doc);
+        //     }
+        // });
 });
 
 // create/replace notes for articles
