@@ -4,6 +4,9 @@ const handlebars = require("express-handlebars");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const route = express.Router();
+const path = require("path");
+const methodOverride = require("method-override");
 
 // require note and article model
 const Note = require("./model/Note.js");
@@ -25,6 +28,7 @@ app.use(logger("dev"));
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+app.use(methodOverride('_method'));
 
 // Static file support with public folder
 app.use(express.static("public"));
@@ -57,9 +61,6 @@ app.listen(PORT, function() {
 
 // Routes
 // =============================================
-
-// initialize express
-var app = express();
 
 // define index path
 app.get("/", function(req, res) {
@@ -104,7 +105,7 @@ app.get("/scrape", function(req, res) {
 
 // will get scraped articles from DB
 app.get("/articles", function(req, res) {
-    res.json('hi')
+    res.send("yo2 from node")
         // grab every article from db
         // Article.find({}, function(error, doc) {
         //     // log any errors
