@@ -6,7 +6,7 @@ $(document).ready(function() {
         $.get("/articles",
             function(data) {
                 console.log(data);
-                $("#articles").html(data)
+                $("#articles").append(data);
             });
         $.ajax({
             url: "/articles",
@@ -16,8 +16,8 @@ $(document).ready(function() {
             // for each on
             for (var i = 0; i < data.length; i++) {
                 // display info on page
-                // $("#articles").append("<p>" + data + "</p>");
-                $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+                $("#articles").append("<p>" + data + "</p>");
+                // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
 
             }
         });
@@ -37,7 +37,7 @@ $(document).ready(function() {
 
                 $("#notes").append("<h2>" + data.title + "<h2>");
 
-                $("#notes").appent("<input id='titleinput' name='title'>");
+                $("#notes").append("<input id='titleinput' name='title'>");
 
                 $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
 
