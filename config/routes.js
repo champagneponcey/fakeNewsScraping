@@ -45,7 +45,7 @@ module.exports = function(router) {
     });
 
     // handle deleting articles
-    router.deletee("/api/articles/:id", function(req, res) {
+    router.delete("/api/articles/:id", function(req, res) {
         // set id property object to id in req.params
         var query = { _id: req.params.id };
         // use articleController delete method to pass query obj containing id of article want to delete
@@ -55,6 +55,34 @@ module.exports = function(router) {
         });
     });
 
+    // handle updating article, esp when saving
+    router.put("/api/articles", function(req, res) {
+        articleController.update(req.body, function(err, data) {
+            // send results back as JSON
+            res.json(data);
+        });
+    });
+
+    // handle getting notes for specific article
+    router.get("/api/notes/:article_id", function(req, res) {
+        var query = { _id: req.params.article_id };
+        // get all notes using noteController get method
+        notesController.get({}, function(err, data) {
+            // send note back as JSON
+            res.json(data);
+        });
+    });
+
+    // handle deleting note for specific article
+    router.delete("/api/notes/:id", function(req, res) {
+        var query = { _id: req.params.id };
+        // use notesController to delete by id
+        notesController.delete(query, function(err, data) {
+            // send back as JSON
+            res.json(data);
+        });
+    });
+};
 
     // a GET request to scrape website
     router.get("/scrape", function(req, res) {
