@@ -19,7 +19,7 @@ module.exports = {
             }
 
             // use mongo models to be able to insert article even if one fails (since can insert as unordered)
-            Article.collection.insertMany(articles, { ordered: false }, function(err, docs) {
+            Article.collection.insertMany(data, { ordered: false }, function(err, docs) {
                 cd(err, docs);
             });
         });
