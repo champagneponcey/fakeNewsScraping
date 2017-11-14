@@ -7,9 +7,12 @@ var Schema = mongoose.Schema;
 // creating Note Schema
 var NoteSchema = new Schema({
     // needs a string
-    body: {
-        type: String
-    }
+    _articleId: {
+        type: Schema.Types.ObjectId,
+        ref: "Article"
+    },
+    date: String,
+    noteText: String
 });
 
 // creating note model with NoteSchema

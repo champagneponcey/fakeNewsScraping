@@ -40,7 +40,7 @@ app.use(router);
 app.use(express.static(__dirname + "/public"));
 
 // Connect Handlebars to our Express app
-app.engine("handlebars", expressHandlebars({
+app.engine("handlebars", handlebars({
     defaultLayout: "main"
   }));
   app.set("view engine", "handlebars");
