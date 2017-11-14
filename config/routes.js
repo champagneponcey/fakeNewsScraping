@@ -8,7 +8,7 @@ var notesController = require("../controllers/notes");
 module.exports = function(router) {
     // define index path to render homepage
     router.get("/", function(req, res) {
-        res.sendFile("home");
+        res.render("index");
     });
 
     // renders saved handlebars page

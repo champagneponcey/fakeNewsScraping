@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    
     // articles as a json
     $("#getArticle").click(function() {
         event.preventDefault();
